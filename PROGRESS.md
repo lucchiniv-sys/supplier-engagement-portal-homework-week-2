@@ -2,9 +2,9 @@
 
 > Claude Code: read this file at the start of every session, before touching anything. Update it at every save point. Replace content — do not append. History lives in git.
 
-**Session:** 1 — build complete, awaiting deploy to main
+**Session:** 1 — build complete, merged to main, Netlify deploy triggered
 **Last updated:** 4 September 2026
-**Live URL:** not yet confirmed — Netlify deploys from `main`
+**Live URL:** not yet recorded — builder to confirm from the Netlify dashboard
 
 ## Current state
 Repo is organised to the CLAUDE.md project structure. `index.html` is rebuilt against docs/product-spec.md v1.0 and passes all 10 acceptance criteria locally (criterion 10 pending the live deploy). No JavaScript on the page — both submission paths are static and always visible. `netlify.toml` publishes a `dist/` folder built from `index.html` + `/assets` only, so internal reference PDFs in `/docs` are not served publicly.
@@ -17,7 +17,7 @@ Wired "View Document" and "View Policy" to the Code of Conduct and Environmental
 Verified locally with a real browser at 1440px and 390px: zero horizontal overflow, all asset paths return 200.
 
 ## Remaining work
-- [ ] Merge to `main` to trigger the Netlify deploy (builder permission needed — see Notes)
+- [x] Merge to `main` to trigger the Netlify deploy — done, fast-forward, commit 15cc914
 - [ ] Confirm the live URL and record it above
 - [ ] Acceptance criterion 10: verify the live site loads and the XLSX downloads from the deployed URL
 - [ ] Builder reviews the "Why We Are Asking" copy
@@ -32,9 +32,11 @@ Verified locally with a real browser at 1440px and 390px: zero horizontal overfl
 - `dist/` is gitignored — Netlify builds it on deploy.
 
 ## Known issues
-- Netlify MCP is not available in this session; deployment is via git push to `main`.
+- Netlify MCP is not available in this session, so the deploy was triggered by git push to `main` and its outcome could not be verified from here.
 - "View Document" / "View Policy" now point at repo PDFs rather than `#`. The filenames match the spec's named documents exactly, but the builder should confirm these are the versions intended for suppliers.
 - `docs/project-governor.zip` is kept in the repo for reference; it is not part of the site.
 
 ## Notes for next session
-The build is on branch `claude/netlify-build-deploy-odzf0c`, not `main`. The session harness restricts pushes to that branch, so the deploy has not been triggered. Merge the branch into `main` (or ask Claude Code for permission to push to `main`) to publish, then record the live URL here and tick acceptance criterion 10.
+The builder authorised the merge and `main` was fast-forwarded to 15cc914, which triggers the Netlify build. Deployment was not verified from this session — there is no Netlify access here. First job next session: open the Netlify dashboard, confirm the build succeeded, record the live URL in the header above, then walk acceptance criterion 10 on the live site (page loads on desktop and mobile, no 404s, the XLSX downloads).
+
+Note for that check: this is the first deploy that carries `netlify.toml`, so Netlify now runs a build command and publishes `dist/` rather than the repo root. If the site 404s, the publish directory is the first thing to look at.
