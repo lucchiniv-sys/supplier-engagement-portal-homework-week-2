@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Supplier Sustainability Portal — The Corporate</title>
+<meta name="description" content="The Corporate's 2026 ESRS-aligned sustainability assessment for Tier 1 suppliers. Submit an EcoVadis scorecard or download the full questionnaire.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -22,9 +24,6 @@
     --tc-white:  #FFFFFF;
     --tc-lime:   #C8F135;
 
-    --tc-bg-page:      var(--tc-chalk);
-    --tc-bg-surface:   var(--tc-linen);
-    --tc-bg-elevated:  var(--tc-white);
     --tc-text-primary: var(--tc-ink);
     --tc-text-muted:   var(--tc-stone);
     --tc-border:       rgba(182, 176, 159, 0.35);
@@ -41,11 +40,10 @@
     --tc-space-2xl: 64px;
     --tc-space-3xl: 96px;
     --tc-max-width: 1120px;
-    --tc-content-width: 720px;
   }
 
   /* ── Base ────────────────────────────────────────────────────────────── */
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: var(--tc-font-body);
     font-size: 15px;
@@ -53,6 +51,7 @@
     line-height: 1.75;
     color: var(--tc-ink);
     background: var(--tc-chalk);
+    overflow-x: hidden;
   }
 
   /* ── Layout ──────────────────────────────────────────────────────────── */
@@ -60,28 +59,11 @@
   @media (max-width: 768px) { .tc-page { padding: 0 var(--tc-space-md); } }
 
   /* ── Typography ──────────────────────────────────────────────────────── */
-  .tc-h1 {
-    font-family: var(--tc-font-display);
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    color: var(--tc-ink);
-  }
   .tc-h2 {
     font-family: var(--tc-font-display);
     font-size: clamp(26px, 3.5vw, 38px);
     font-weight: 400;
     line-height: 1.15;
-    color: var(--tc-ink);
-  }
-  .tc-h3 {
-    font-family: var(--tc-font-body);
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     color: var(--tc-ink);
   }
   .tc-subhead {
@@ -100,75 +82,42 @@
     line-height: 1.75;
     color: var(--tc-ink);
   }
-  .tc-label {
-    font-family: var(--tc-font-body);
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
 
   /* ── Buttons ─────────────────────────────────────────────────────────── */
-  .tc-btn-primary {
-    display: inline-block;
+  .tc-btn-primary,
+  .tc-btn-secondary {
+    display: block;
+    width: 100%;
     font-family: var(--tc-font-body);
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    text-align: center;
     text-decoration: none;
+    border-radius: 0;
+    padding: 16px 32px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .tc-btn-primary {
     background: var(--tc-ink);
     color: var(--tc-chalk);
-    border: none;
-    border-radius: 0;
-    padding: 14px 32px;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    white-space: nowrap;
+    border: 0.5px solid var(--tc-ink);
   }
   .tc-btn-primary:hover { background: #1a1a1a; }
 
   .tc-btn-secondary {
-    display: inline-block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
     background: transparent;
     color: var(--tc-ink);
     border: 0.5px solid var(--tc-ink);
-    border-radius: 0;
-    padding: 14px 32px;
-    cursor: pointer;
-    transition: background 0.15s ease;
   }
   .tc-btn-secondary:hover { background: var(--tc-linen); }
 
-  .tc-btn-ghost {
-    display: inline-block;
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: transparent;
-    color: var(--tc-stone);
-    border: 0.5px solid var(--tc-border-strong);
-    border-radius: 0;
-    padding: 12px 28px;
-    cursor: pointer;
-    transition: all 0.15s ease;
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--tc-ink);
+    outline-offset: 2px;
   }
-  .tc-btn-ghost:hover { color: var(--tc-ink); border-color: var(--tc-ink); }
-
-  /* ── Dividers ─────────────────────────────────────────────────────────── */
-  .tc-divider { height: 0.5px; background: var(--tc-border); margin: var(--tc-space-xl) 0; }
-  .tc-divider-strong { height: 1px; background: var(--tc-stone); margin: var(--tc-space-xl) 0; }
 
   /* ── NAV ─────────────────────────────────────────────────────────────── */
   .nav {
@@ -190,12 +139,7 @@
   }
   @media (max-width: 768px) { .nav-inner { padding: 0 var(--tc-space-md); } }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo-mark {
     width: 28px;
     height: 28px;
@@ -220,7 +164,6 @@
     text-transform: uppercase;
     color: var(--tc-chalk);
   }
-
   .nav-meta {
     font-family: var(--tc-font-body);
     font-size: 10px;
@@ -238,15 +181,6 @@
     position: relative;
     overflow: hidden;
   }
-  .hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--tc-lime);
-  }
   .hero-inner {
     max-width: var(--tc-max-width);
     margin: 0 auto;
@@ -260,6 +194,7 @@
     gap: var(--tc-space-md);
     margin-bottom: var(--tc-space-xl);
   }
+  /* Acid Lime — use 1 of 2. Pattern A: lime text on an Ink container. */
   .hero-eyebrow-tag {
     background: var(--tc-ink);
     padding: 4px 12px;
@@ -274,28 +209,18 @@
     text-transform: uppercase;
     color: var(--tc-lime);
   }
-  .hero-eyebrow-line {
-    flex: 1;
-    height: 0.5px;
-    background: rgba(182,176,159,0.25);
-  }
+  .hero-eyebrow-line { flex: 1; height: 0.5px; background: rgba(182,176,159,0.25); }
 
   .hero-title {
     font-family: var(--tc-font-display);
-    font-size: clamp(38px, 5.5vw, 64px);
+    font-size: clamp(34px, 5.5vw, 56px);
     font-weight: 700;
-    line-height: 1.04;
+    line-height: 1.06;
     letter-spacing: -0.01em;
     color: var(--tc-chalk);
     max-width: 760px;
     margin-bottom: var(--tc-space-xl);
   }
-  .hero-title em {
-    font-style: normal;
-    border-bottom: 2px solid var(--tc-lime);
-    padding-bottom: 2px;
-  }
-
   .hero-body {
     font-family: var(--tc-font-body);
     font-size: 16px;
@@ -307,27 +232,38 @@
   }
 
   .hero-stats {
-    display: flex;
-    gap: var(--tc-space-2xl);
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--tc-space-xl);
     border-top: 0.5px solid rgba(182,176,159,0.2);
     padding-top: var(--tc-space-xl);
   }
+  @media (max-width: 768px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: var(--tc-space-lg); }
+  }
   .hero-stat-value {
     font-family: var(--tc-font-display);
-    font-size: 36px;
+    font-size: clamp(28px, 4vw, 40px);
     font-weight: 700;
     color: var(--tc-chalk);
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: var(--tc-space-sm);
   }
   .hero-stat-label {
     font-family: var(--tc-font-body);
     font-size: 10px;
     font-weight: 400;
     letter-spacing: 0.16em;
+    line-height: 1.6;
     text-transform: uppercase;
     color: var(--tc-stone);
+  }
+  .hero-stat-note {
+    margin-top: var(--tc-space-lg);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--tc-stone);
+    letter-spacing: 0.04em;
   }
 
   /* ── WHY SECTION ─────────────────────────────────────────────────────── */
@@ -338,11 +274,9 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--tc-space-2xl);
     align-items: start;
+    margin-top: var(--tc-space-lg);
   }
-  @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
-
-  .why-left {}
-  .why-right {}
+  @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; gap: var(--tc-space-xl); } }
 
   .why-card {
     border: 0.5px solid var(--tc-border-strong);
@@ -363,7 +297,7 @@
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--tc-lime);
+    color: var(--tc-chalk);
   }
   .why-card-title {
     font-family: var(--tc-font-body);
@@ -380,174 +314,121 @@
     color: var(--tc-stone);
   }
 
-  /* ── DECISION TREE ───────────────────────────────────────────────────── */
-  .section-tree {
-    padding: var(--tc-space-3xl) 0;
-    background: var(--tc-chalk);
-  }
+  /* ── TWO ROUTES ──────────────────────────────────────────────────────── */
+  .section-routes { padding: var(--tc-space-3xl) 0; background: var(--tc-chalk); }
 
-  .tree-header {
-    text-align: center;
-    max-width: 560px;
-    margin: 0 auto var(--tc-space-2xl);
-  }
+  .routes-header { max-width: 620px; margin-bottom: var(--tc-space-2xl); }
 
-  /* Step 1: Question card */
-  .tree-question-card {
-    background: var(--tc-ink);
-    padding: var(--tc-space-2xl) var(--tc-space-xl);
-    max-width: 680px;
-    margin: 0 auto var(--tc-space-xl);
-    text-align: center;
-    position: relative;
-  }
-  .tree-question-card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: var(--tc-space-xl);
-    right: var(--tc-space-xl);
-    height: 0.5px;
-    background: rgba(182,176,159,0.2);
-  }
-  .tree-question-label {
-    font-family: var(--tc-font-body);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-    margin-bottom: var(--tc-space-md);
-  }
-  .tree-question-text {
-    font-family: var(--tc-font-display);
-    font-size: clamp(22px, 3vw, 30px);
-    font-weight: 400;
-    color: var(--tc-chalk);
-    line-height: 1.2;
-    margin-bottom: var(--tc-space-xl);
-  }
-  .tree-btn-group {
-    display: flex;
-    gap: var(--tc-space-md);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .tree-btn {
-    font-family: var(--tc-font-body);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 40px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    border-radius: 0;
-  }
-  .tree-btn-yes {
-    background: var(--tc-lime);
-    color: var(--tc-ink);
-  }
-  .tree-btn-yes:hover { background: #b8e020; }
-  .tree-btn-no {
-    background: transparent;
-    color: var(--tc-chalk);
-    border: 0.5px solid rgba(182,176,159,0.5);
-  }
-  .tree-btn-no:hover { border-color: var(--tc-chalk); }
-
-  /* Paths container */
-  .tree-paths {
+  .routes-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--tc-space-md);
-    max-width: 860px;
-    margin: 0 auto;
   }
-  @media (max-width: 680px) { .tree-paths { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) { .routes-grid { grid-template-columns: 1fr; } }
 
-  .tree-path {
+  .route-card {
     border: 0.5px solid var(--tc-border-strong);
     padding: var(--tc-space-xl) var(--tc-space-lg);
     background: var(--tc-white);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    position: relative;
+    display: flex;
+    flex-direction: column;
   }
-  .tree-path.dimmed {
-    opacity: 0.3;
-    pointer-events: none;
-  }
-  .tree-path.highlighted {
-    border-color: var(--tc-ink);
-    box-shadow: inset 0 0 0 1px var(--tc-ink);
-  }
-
-  .tree-path-badge {
+  .route-card-badge {
     display: inline-block;
+    align-self: flex-start;
     background: var(--tc-ink);
     padding: 4px 12px;
     margin-bottom: var(--tc-space-md);
   }
-  .tree-path-badge span {
+  .route-card-badge span {
+    font-family: var(--tc-font-body);
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--tc-lime);
-    font-family: var(--tc-font-body);
+    color: var(--tc-chalk);
   }
-  .tree-path-badge.badge-b {
-    background: var(--tc-chalk);
-  }
-  .tree-path-badge.badge-b span { color: var(--tc-stone); }
-
-  .tree-path-title {
+  .route-card-title {
     font-family: var(--tc-font-body);
     font-size: 15px;
     font-weight: 500;
     color: var(--tc-ink);
     margin-bottom: var(--tc-space-sm);
   }
-  .tree-path-body {
+  .route-card-body {
     font-family: var(--tc-font-body);
     font-size: 13px;
     font-weight: 300;
     color: var(--tc-stone);
     line-height: 1.7;
     margin-bottom: var(--tc-space-lg);
+    flex: 1;
+  }
+  .route-card-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--tc-stone);
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    margin-top: var(--tc-space-sm);
+    text-align: center;
   }
 
-  .tree-reset {
-    text-align: center;
-    margin-top: var(--tc-space-lg);
+  /* ── TIMELINE ─────────────────────────────────────────────────────────── */
+  .section-timeline { padding: var(--tc-space-3xl) 0; background: var(--tc-white); }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: var(--tc-space-xl);
+    border: 0.5px solid var(--tc-border-strong);
   }
-  .tree-reset button {
-    background: none;
-    border: none;
-    font-family: var(--tc-font-body);
-    font-size: 11px;
+  @media (max-width: 768px) { .timeline { grid-template-columns: 1fr; } }
+
+  .timeline-step {
+    padding: var(--tc-space-lg);
+    border-right: 0.5px solid var(--tc-border-strong);
+  }
+  .timeline-step:last-child { border-right: none; }
+  @media (max-width: 768px) {
+    .timeline-step { border-right: none; border-bottom: 0.5px solid var(--tc-border-strong); }
+    .timeline-step:last-child { border-bottom: none; }
+  }
+
+  /* Acid Lime — use 2 of 2. Pattern A: lime numerals on an Ink container. */
+  .timeline-step-num {
+    display: inline-block;
+    background: var(--tc-ink);
+    font-family: var(--tc-font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--tc-lime);
+    line-height: 1;
+    padding: 8px 12px;
+    margin-bottom: var(--tc-space-md);
+  }
+  .timeline-step-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--tc-ink);
+    margin-bottom: var(--tc-space-xs);
+  }
+  .timeline-step-body {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--tc-stone);
+    margin-bottom: var(--tc-space-sm);
+  }
+  .timeline-step-date {
+    font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--tc-stone);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
-  .tree-reset button:hover { color: var(--tc-ink); }
-  .tree-reset { display: none; }
 
-  /* Connector arrow */
-  .tree-connector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    margin-bottom: var(--tc-space-xs);
-  }
-  .tree-connector svg { color: var(--tc-stone); }
-
-  /* ── KEY LINKS ───────────────────────────────────────────────────────── */
+  /* ── KEY RESOURCES ───────────────────────────────────────────────────── */
   .section-links { padding: var(--tc-space-3xl) 0; background: var(--tc-linen); }
 
   .links-grid {
@@ -569,7 +450,7 @@
     transition: border-color 0.15s ease;
   }
   .link-card:hover { border-color: var(--tc-ink); }
-  .link-card:hover .link-card-arrow { transform: translateX(4px); }
+  .link-card:hover .link-card-arrow { color: var(--tc-ink); }
 
   .link-card-icon {
     width: 32px;
@@ -589,11 +470,7 @@
     color: var(--tc-stone);
     margin-top: var(--tc-space-sm);
   }
-  .link-card-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--tc-ink);
-  }
+  .link-card-title { font-size: 14px; font-weight: 500; color: var(--tc-ink); }
   .link-card-desc {
     font-size: 12px;
     font-weight: 300;
@@ -603,73 +480,19 @@
   }
   .link-card-arrow {
     font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--tc-stone);
+    color: var(--tc-ink);
     margin-top: var(--tc-space-sm);
-    transition: transform 0.15s ease;
     display: flex;
     align-items: center;
     gap: 6px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.15s ease;
   }
   .link-card-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-
-  /* ── TIMELINE ─────────────────────────────────────────────────────────── */
-  .section-timeline { padding: var(--tc-space-3xl) 0; background: var(--tc-white); }
-
-  .timeline {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin-top: var(--tc-space-xl);
-    border: 0.5px solid var(--tc-border-strong);
-  }
-  @media (max-width: 768px) { .timeline { grid-template-columns: 1fr; } }
-
-  .timeline-step {
-    padding: var(--tc-space-lg);
-    border-right: 0.5px solid var(--tc-border-strong);
-    position: relative;
-  }
-  .timeline-step:last-child { border-right: none; }
-  @media (max-width: 768px) {
-    .timeline-step { border-right: none; border-bottom: 0.5px solid var(--tc-border-strong); }
-    .timeline-step:last-child { border-bottom: none; }
-  }
-
-  .timeline-step-num {
-    font-family: var(--tc-font-display);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--tc-linen);
-    line-height: 1;
-    margin-bottom: var(--tc-space-sm);
-  }
-  .timeline-step.active .timeline-step-num { color: var(--tc-lime); }
-  .timeline-step.active { background: var(--tc-ink); }
-  .timeline-step.active .timeline-step-title { color: var(--tc-chalk); }
-  .timeline-step.active .timeline-step-body { color: var(--tc-stone); }
-  .timeline-step.active .timeline-step-date { color: var(--tc-stone); }
-
-  .timeline-step-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--tc-ink);
-    margin-bottom: var(--tc-space-xs);
-  }
-  .timeline-step-body {
-    font-size: 12px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--tc-stone);
-    margin-bottom: var(--tc-space-sm);
-  }
-  .timeline-step-date {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tc-stone);
-  }
 
   /* ── FOOTER ──────────────────────────────────────────────────────────── */
   .footer {
@@ -689,24 +512,42 @@
   }
   @media (max-width: 768px) { .footer-inner { padding: 0 var(--tc-space-md); flex-direction: column; } }
 
-  .footer-brand {}
   .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--tc-space-md);
+  }
+  .footer-logo-mark {
+    width: 24px;
+    height: 24px;
+    background: var(--tc-chalk);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer-logo-mark span {
+    font-family: var(--tc-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tc-ink);
+    line-height: 1;
+  }
+  .footer-logo-wordmark {
     font-family: var(--tc-font-body);
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--tc-chalk);
-    margin-bottom: var(--tc-space-sm);
   }
   .footer-tagline {
     font-size: 11px;
     font-weight: 300;
     color: var(--tc-stone);
-    max-width: 260px;
-    line-height: 1.6;
+    max-width: 280px;
+    line-height: 1.7;
   }
-
   .footer-meta {
     text-align: right;
     font-size: 10px;
@@ -722,8 +563,10 @@
   .footer-divider {
     height: 0.5px;
     background: rgba(182,176,159,0.15);
-    margin: var(--tc-space-lg) 0;
+    margin: var(--tc-space-lg) var(--tc-space-2xl);
   }
+  @media (max-width: 768px) { .footer-divider { margin: var(--tc-space-lg) var(--tc-space-md); } }
+
   .footer-bottom {
     max-width: var(--tc-max-width);
     margin: 0 auto;
@@ -741,13 +584,12 @@
     color: var(--tc-stone);
     letter-spacing: 0.1em;
   }
-  .footer-esrs-badge {
+  .footer-badge {
     display: inline-block;
-    background: transparent;
     border: 0.5px solid rgba(182,176,159,0.3);
     padding: 4px 10px;
   }
-  .footer-esrs-badge span {
+  .footer-badge span {
     font-size: 9px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -755,14 +597,10 @@
   }
 
   /* ── Utilities ───────────────────────────────────────────────────────── */
-  .mt-sm  { margin-top: var(--tc-space-sm); }
   .mt-md  { margin-top: var(--tc-space-md); }
   .mt-lg  { margin-top: var(--tc-space-lg); }
-  .mt-xl  { margin-top: var(--tc-space-xl); }
-  .mb-sm  { margin-bottom: var(--tc-space-sm); }
   .mb-md  { margin-bottom: var(--tc-space-md); }
   .mb-lg  { margin-bottom: var(--tc-space-lg); }
-  .mb-xl  { margin-bottom: var(--tc-space-xl); }
 </style>
 </head>
 <body>
@@ -770,7 +608,7 @@
 <!-- ── NAV ──────────────────────────────────────────────────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="The Corporate">
+    <a href="#top" class="nav-logo" aria-label="The Corporate">
       <div class="nav-logo-mark"><span>C</span></div>
       <span class="nav-logo-wordmark">The Corporate</span>
     </a>
@@ -787,7 +625,7 @@
     </div>
 
     <h1 class="hero-title">
-      We don't just manufacture products.<br>We <em>engineer</em> a sustainable future.
+      We don't just manufacture products.<br>We engineer a sustainable future.
     </h1>
 
     <p class="hero-body">
@@ -798,7 +636,7 @@
     <div class="hero-stats">
       <div>
         <div class="hero-stat-value">690,000</div>
-        <div class="hero-stat-label">tCO2e Total Footprint (2023)</div>
+        <div class="hero-stat-label">tCO<sub>2</sub>e Total Footprint (2023, location-based)</div>
       </div>
       <div>
         <div class="hero-stat-value">71%</div>
@@ -813,60 +651,64 @@
         <div class="hero-stat-label">Tier 1 Suppliers</div>
       </div>
     </div>
-    <p class="hero-stat-note" style="margin-top: var(--tc-space-md); font-size: 12px; color: var(--tc-stone); letter-spacing: 0.04em;">
-      Scope 3 is 71% of The Corporate's total carbon footprint (location-based, 2023 base year).
+
+    <p class="hero-stat-note">
+      Scope 3 is 71% of the total footprint (location-based, 2023 base year).
     </p>
   </div>
 </section>
 
-<!-- ── THE WHY ────────────────────────────────────────────────────────────── -->
+<!-- ── WHY WE ARE ASKING ──────────────────────────────────────────────────── -->
 <section class="section-why" id="why">
   <div class="tc-page">
-    <p class="tc-subhead mb-lg">Why We Are Asking</p>
+    <p class="tc-subhead mb-md">Why We Are Asking</p>
+    <h2 class="tc-h2" style="max-width:620px;">This is driven by regulation, and by ambition.</h2>
+
     <div class="why-grid">
-      <div class="why-left">
-        <h2 class="tc-h2" style="max-width:440px;">
-          This is driven by regulation, and by ambition.
-        </h2>
-        <p class="tc-body mt-lg" style="color:var(--tc-stone);">
-          71% of The Corporate's total carbon footprint sits in our value chain — in the products
-          and services our Tier 1 suppliers provide. Reaching Net-Zero by 2045 is not possible
-          without visibility into, and collaboration with, our supply base.
+      <div>
+        <p class="tc-body" style="color:var(--tc-stone);">
+          Scope 3 is 71% of The Corporate's total carbon footprint — location-based, 2023 base year.
+          That footprint sits in the products and services our Tier 1 suppliers provide. We cannot
+          measure it from the inside. We are asking you because the data lives with you.
         </p>
         <p class="tc-body mt-md" style="color:var(--tc-stone);">
-          This assessment is the foundation of that visibility. It is aligned with the EU's
-          Corporate Sustainability Reporting Directive (CSRD) and the European Sustainability
-          Reporting Standards (ESRS), both of which require companies to report on value chain
-          impacts beginning in 2026.
+          The European Sustainability Reporting Standards, adopted under the Corporate Sustainability
+          Reporting Directive, require us to report value chain impacts — not estimates. This
+          assessment is how we meet that obligation, and it is built directly on the ESRS topics
+          that apply to our supply base.
+        </p>
+        <p class="tc-body mt-md" style="color:var(--tc-stone);">
+          Net-Zero by 2045 is a shared target. We are not transferring the burden to you. We are
+          asking for visibility first, then we work the gaps together. Suppliers who engage early
+          shape how the programme develops.
         </p>
       </div>
-      <div class="why-right">
+      <div>
         <div class="why-card">
           <div class="why-card-tag"><span>CSRD / ESRS</span></div>
           <div class="why-card-title">Regulatory Requirement</div>
           <div class="why-card-body">
-            The EU Corporate Sustainability Reporting Directive mandates disclosure of Scope 3
-            emissions and value chain sustainability performance. Non-compliance creates
-            material financial and reputational risk for The Corporate — and by extension, for you.
+            The Corporate Sustainability Reporting Directive requires disclosure of Scope 3 emissions
+            and value chain sustainability performance. The reporting standard is ESRS. Your responses
+            feed our disclosure directly.
           </div>
         </div>
         <div class="why-card">
           <div class="why-card-tag"><span>Double Materiality</span></div>
-          <div class="why-card-title">Impact & Financial Materiality</div>
+          <div class="why-card-title">Impact and Financial Materiality</div>
           <div class="why-card-body">
-            Our 2026 Double Materiality Assessment identified three primary supplier risk areas:
-            E1 (Climate), E2 (PFAS / Pollution), and E3 (Water Stress). These are not
-            hypothetical risks — they carry direct financial exposure in the form of
-            carbon taxes, REACH bans, and supply chain disruptions.
+            Our double materiality assessment identifies climate (E1), pollution and PFAS (E2), and
+            water (E3) as the primary supplier topics. Each carries financial exposure — carbon
+            pricing, substance restrictions, and water stress in shared catchments.
           </div>
         </div>
         <div class="why-card">
           <div class="why-card-tag"><span>Partnership</span></div>
           <div class="why-card-title">A Shared Journey</div>
           <div class="why-card-body">
-            Suppliers who demonstrate strong sustainability performance receive preferential
-            status in The Corporate's procurement scoring. This is not a compliance exercise —
-            it is the foundation of a long-term, resilient supply partnership.
+            Sustainability performance is part of our procurement assessment. Strong performers are
+            prioritised for joint improvement plans. This is the foundation of a resilient supply
+            partnership, not a compliance exercise.
           </div>
         </div>
       </div>
@@ -874,82 +716,53 @@
   </div>
 </section>
 
-<!-- ── DECISION TREE ──────────────────────────────────────────────────────── -->
-<section class="section-tree" id="submit">
+<!-- ── TWO ROUTES ─────────────────────────────────────────────────────────── -->
+<section class="section-routes" id="submit">
   <div class="tc-page">
-    <div class="tree-header">
+    <div class="routes-header">
       <p class="tc-subhead mb-md">Your Submission Path</p>
-      <h2 class="tc-h2">Two routes. One destination.</h2>
+      <h2 class="tc-h2">Two Routes. One Destination.</h2>
       <p class="tc-body mt-md" style="color:var(--tc-stone); font-size:14px;">
-        We respect your time. If you already hold a current EcoVadis Scorecard,
-        you have an expedited path. Answer the question below to find out where to start.
+        Both routes are open. Choose the one that matches your situation. If you hold a valid
+        EcoVadis scorecard issued within the last 12 months, take the first. If you do not, take
+        the second.
       </p>
     </div>
 
-    <!-- Question card -->
-    <div class="tree-question-card" id="tree-question">
-      <div class="tree-question-label">Step 1 of 2 — Qualification Check</div>
-      <div class="tree-question-text">
-        Do you hold a valid EcoVadis Scorecard issued within the last 12 months?
-      </div>
-      <div class="tree-btn-group">
-        <button class="tree-btn tree-btn-yes" onclick="choosePath('yes')">Yes, I Have a Scorecard</button>
-        <button class="tree-btn tree-btn-no" onclick="choosePath('no')">No, I Don't</button>
-      </div>
-    </div>
+    <div class="routes-grid">
 
-    <!-- Connector -->
-    <div class="tree-connector" id="tree-connector" style="display:none;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 5v14M5 12l7 7 7-7"/>
-      </svg>
-    </div>
-
-    <!-- Two paths -->
-    <div class="tree-paths" id="tree-paths">
-
-      <!-- Path A: EcoVadis -->
-      <div class="tree-path" id="path-a">
-        <div class="tree-path-badge"><span>Path A — EcoVadis</span></div>
-        <div class="tree-path-title">Submit Your Scorecard</div>
-        <div class="tree-path-body">
-          Suppliers with a current EcoVadis Scorecard (score ≥ 45) are exempt from
-          the detailed technical questionnaire. Simply submit your scorecard link and
-          our Procurement team will be in touch to confirm your status.
-          <br><br>
-          Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">5 minutes</strong>
+      <!-- Route 1 — EcoVadis -->
+      <div class="route-card">
+        <div class="route-card-badge"><span>EcoVadis Scorecard</span></div>
+        <div class="route-card-title">Submit Your Existing Scorecard</div>
+        <div class="route-card-body">
+          Suppliers holding a valid EcoVadis scorecard issued within the last 12 months may submit
+          the scorecard link instead of completing the full questionnaire. Share your scorecard from
+          EcoVadis with The Corporate. Our Procurement team confirms your status once it is received.
         </div>
-        <a href="mailto:sustainability@thecorporate.com?subject=EcoVadis Scorecard Submission — [Your Company Name]&body=Please include your EcoVadis scorecard link and company name." class="tc-btn-primary" style="width:100%; text-align:center; display:block; padding:14px;">
-          Submit Scorecard by Email
+        <a href="https://ecovadis.com" target="_blank" rel="noopener noreferrer" class="tc-btn-primary">
+          Submit EcoVadis Scorecard
         </a>
+        <p class="route-card-note">Opens ecovadis.com in a new tab.</p>
       </div>
 
-      <!-- Path B: Full Questionnaire -->
-      <div class="tree-path" id="path-b">
-        <div class="tree-path-badge badge-b"><span>Path B — Full Assessment</span></div>
-        <div class="tree-path-title">Download & Complete the Questionnaire</div>
-        <div class="tree-path-body">
-          Complete the Smart Sustainability Questionnaire covering 8 sections aligned
-          to ESRS E1, E2, E3, E4, E5, S2, and G1. The file includes data-validated
-          dropdowns and clear instructions for each section.
-          <br><br>
-          Estimated time: <strong style="color:var(--tc-ink); font-weight:500;">45–60 minutes</strong>
+      <!-- Route 2 — Full Questionnaire -->
+      <div class="route-card">
+        <div class="route-card-badge"><span>Full Questionnaire</span></div>
+        <div class="route-card-title">Download and Complete the Assessment</div>
+        <div class="route-card-body">
+          Suppliers without a current EcoVadis scorecard complete The Corporate Supplier Questionnaire
+          2026. It covers seven sections mapped to ESRS: general information, climate (E1), pollution
+          and PFAS (E2), water (E3), circular economy and waste (E5), biodiversity (E4), and social,
+          labour and governance (S2, G1). Complete it offline and return it to our EHS team by email.
         </div>
-        <a href="The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary" style="width:100%; text-align:center; display:block; padding:14px;">
-          Download Questionnaire (Excel)
+        <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary">
+          Download Assessment
         </a>
-        <p style="font-size:11px; color:var(--tc-stone); letter-spacing:0.08em; margin-top:10px; text-align:center;">
-          Return completed file to sustainability@thecorporate.com
-        </p>
+        <p class="route-card-note">Return the completed file to sustainability@thecorporate.com</p>
       </div>
 
     </div>
-
-    <!-- Reset -->
-    <div class="tree-reset" id="tree-reset">
-      <button onclick="resetTree()">Start Over</button>
-    </div>
-
   </div>
 </section>
 
@@ -957,10 +770,10 @@
 <section class="section-timeline" id="timeline">
   <div class="tc-page">
     <p class="tc-subhead mb-md">Programme Timeline</p>
-    <h2 class="tc-h2">What happens next.</h2>
+    <h2 class="tc-h2">What Happens Next.</h2>
 
-    <div class="timeline mt-xl">
-      <div class="timeline-step active">
+    <div class="timeline">
+      <div class="timeline-step">
         <div class="timeline-step-num">01</div>
         <div class="timeline-step-title">Portal Launch</div>
         <div class="timeline-step-body">You receive this link and select your submission path.</div>
@@ -974,7 +787,7 @@
       </div>
       <div class="timeline-step">
         <div class="timeline-step-num">03</div>
-        <div class="timeline-step-title">Review & Scoring</div>
+        <div class="timeline-step-title">Review &amp; Scoring</div>
         <div class="timeline-step-body">Our EHS and Procurement teams review submissions and flag gaps.</div>
         <div class="timeline-step-date">Q4 2026</div>
       </div>
@@ -988,7 +801,7 @@
   </div>
 </section>
 
-<!-- ── KEY LINKS ──────────────────────────────────────────────────────────── -->
+<!-- ── KEY RESOURCES ──────────────────────────────────────────────────────── -->
 <section class="section-links" id="resources">
   <div class="tc-page">
     <p class="tc-subhead mb-md">Key Resources</p>
@@ -996,51 +809,51 @@
 
     <div class="links-grid">
 
-      <a href="#" class="link-card">
+      <a href="assets/The_Corporate_Supplier_Code_of_Conduct_2026.pdf" target="_blank" rel="noopener noreferrer" class="link-card">
         <div class="link-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <div class="link-card-label">Document</div>
         <div class="link-card-title">Supplier Code of Conduct</div>
         <div class="link-card-desc">
-          Our standards for ethical business conduct, labour rights, and environmental responsibility.
-          All Tier 1 suppliers must have a signed copy on file.
+          The Corporate's standards for ethical business conduct, labour rights, and environmental
+          responsibility. All Tier 1 suppliers must have a signed copy on file.
         </div>
         <div class="link-card-arrow">
           View Document
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
       </a>
 
-      <a href="#" class="link-card">
+      <a href="assets/The_Corporate_Global_Environmental_Policy.pdf" target="_blank" rel="noopener noreferrer" class="link-card">
         <div class="link-card-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
         <div class="link-card-label">Policy</div>
         <div class="link-card-title">Global Environmental Policy</div>
         <div class="link-card-desc">
-          The Corporate's commitments on climate, water, PFAS, and circular economy —
-          the framework that defines what we expect from our value chain partners.
+          The Corporate's commitments on climate, water, PFAS, and circular economy — the framework
+          that defines what we expect from our value chain partners.
         </div>
         <div class="link-card-arrow">
           View Policy
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
       </a>
 
-      <a href="mailto:sustainability@thecorporate.com?subject=Supplier Portal Help Desk Query" class="link-card">
+      <a href="mailto:sustainability@thecorporate.com?subject=Supplier%20Portal%20Help%20Desk%20Query" class="link-card">
         <div class="link-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <div class="link-card-label">Support</div>
         <div class="link-card-title">EHS Help Desk</div>
         <div class="link-card-desc">
-          Questions about specific ESRS requirements, measurement methodology, or technical
-          aspects of the questionnaire? Contact our Environment, Health &amp; Safety team directly.
+          Questions about specific ESRS requirements, measurement methodology, or technical aspects
+          of the questionnaire? Contact our Environment, Health &amp; Safety team directly.
         </div>
         <div class="link-card-arrow">
           Contact EHS
-          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </div>
       </a>
 
@@ -1051,65 +864,28 @@
 <!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="footer-logo">The Corporate</div>
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-mark"><span>C</span></div>
+        <span class="footer-logo-wordmark">The Corporate</span>
+      </div>
       <div class="footer-tagline">
         Engineering a sustainable future. Net-Zero by 2045 across all scopes of operation.
       </div>
     </div>
     <div class="footer-meta">
-      <div>ESRS / CSRD Aligned · Version 2.0</div>
+      <div>ESRS / CSRD Aligned</div>
       <div>Supplier Programme · 2026</div>
-      <div style="margin-top:8px;">Scope 3: 71% of total footprint · location-based · 2023 base year</div>
-      <div style="margin-top:8px;"><a href="mailto:sustainability@thecorporate.com">sustainability@thecorporate.com</a></div>
+      <div>Scope 3 is 71% of the total footprint (location-based, 2023 base year).</div>
+      <div><a href="mailto:sustainability@thecorporate.com">sustainability@thecorporate.com</a></div>
     </div>
   </div>
-  <div class="footer-divider" style="margin: var(--tc-space-lg) var(--tc-space-2xl);"></div>
+  <div class="footer-divider"></div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 The Corporate. Confidential. For Tier 1 Supplier use only.</div>
-    <div class="footer-esrs-badge"><span>ESRS Compliant · CSRD 2026</span></div>
+    <div class="footer-copy">© 2026 The Corporate. Confidential — for authorised Tier 1 suppliers only.</div>
+    <div class="footer-badge"><span>ESRS Compliant · CSRD 2026</span></div>
   </div>
 </footer>
-
-<!-- ── DECISION TREE LOGIC ────────────────────────────────────────────────── -->
-<script>
-  function choosePath(choice) {
-    const pathA   = document.getElementById("path-a");
-    const pathB   = document.getElementById("path-b");
-    const reset   = document.getElementById("tree-reset");
-    const connector = document.getElementById("tree-connector");
-
-    connector.style.display = "flex";
-    reset.style.display = "block";
-
-    if (choice === "yes") {
-      pathA.classList.remove("dimmed");
-      pathA.classList.add("highlighted");
-      pathB.classList.add("dimmed");
-      pathB.classList.remove("highlighted");
-    } else {
-      pathB.classList.remove("dimmed");
-      pathB.classList.add("highlighted");
-      pathA.classList.add("dimmed");
-      pathA.classList.remove("highlighted");
-    }
-
-    // Scroll to paths
-    document.getElementById("tree-paths").scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }
-
-  function resetTree() {
-    const pathA   = document.getElementById("path-a");
-    const pathB   = document.getElementById("path-b");
-    const reset   = document.getElementById("tree-reset");
-    const connector = document.getElementById("tree-connector");
-
-    pathA.classList.remove("dimmed", "highlighted");
-    pathB.classList.remove("dimmed", "highlighted");
-    reset.style.display = "none";
-    connector.style.display = "none";
-  }
-</script>
 
 </body>
 </html>

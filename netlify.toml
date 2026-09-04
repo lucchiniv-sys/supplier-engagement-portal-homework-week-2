@@ -1,0 +1,19 @@
+# The Corporate Supplier Sustainability Portal 2026 — Netlify deploy config.
+# Tier 1: static site, no build framework, no environment variables.
+# The build step copies only the public surface (index.html + /assets) into dist/,
+# so internal reference material in /docs is never published.
+
+[build]
+  publish = "dist"
+  command = "rm -rf dist && mkdir -p dist && cp index.html dist/ && cp -r assets dist/assets"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*.xlsx"
+  [headers.values]
+    Content-Disposition = "attachment"
