@@ -1,0 +1,9 @@
+{
+  "name": "supplier-sustainability-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Corporate — Supplier Sustainability Portal (Netlify Functions dependencies).",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}

@@ -314,65 +314,108 @@
     color: var(--tc-stone);
   }
 
-  /* ── TWO ROUTES ──────────────────────────────────────────────────────── */
+  /* ── SUBMISSION WIZARD ───────────────────────────────────────────────── */
   .section-routes { padding: var(--tc-space-3xl) 0; background: var(--tc-chalk); }
 
   .routes-header { max-width: 620px; margin-bottom: var(--tc-space-2xl); }
 
-  .routes-grid {
+  .assessment-screen[hidden] { display: none; }
+
+  .assessment-back {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: var(--tc-space-lg);
+    font-family: var(--tc-font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tc-stone);
+    cursor: pointer;
+  }
+  .assessment-back:hover { color: var(--tc-ink); }
+
+  .tree-buttons, .choice-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--tc-space-md);
+    max-width: 640px;
   }
-  @media (max-width: 768px) { .routes-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .tree-buttons, .choice-buttons { grid-template-columns: 1fr; } }
+  .tree-btn-yes, .tree-btn-no { width: 100%; }
 
-  .route-card {
-    border: 0.5px solid var(--tc-border-strong);
-    padding: var(--tc-space-xl) var(--tc-space-lg);
-    background: var(--tc-white);
-    display: flex;
-    flex-direction: column;
-  }
-  .route-card-badge {
-    display: inline-block;
-    align-self: flex-start;
-    background: var(--tc-ink);
-    padding: 4px 12px;
-    margin-bottom: var(--tc-space-md);
-  }
-  .route-card-badge span {
+  .section-block-title {
     font-family: var(--tc-font-body);
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--tc-chalk);
-  }
-  .route-card-title {
-    font-family: var(--tc-font-body);
-    font-size: 15px;
-    font-weight: 500;
     color: var(--tc-ink);
-    margin-bottom: var(--tc-space-sm);
+    margin: var(--tc-space-xl) 0 var(--tc-space-md);
+    padding-bottom: var(--tc-space-sm);
+    border-bottom: 0.5px solid var(--tc-border-strong);
   }
-  .route-card-body {
+  .section-block-title:first-of-type { margin-top: 0; }
+
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--tc-space-lg) var(--tc-space-lg);
+  }
+  @media (max-width: 768px) { .field-grid { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field[hidden] { display: none; }
+  .field-full { grid-column: 1 / -1; }
+
+  .field label {
     font-family: var(--tc-font-body);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--tc-stone);
-    line-height: 1.7;
-    margin-bottom: var(--tc-space-lg);
-    flex: 1;
-  }
-  .route-card-note {
     font-size: 11px;
-    font-weight: 300;
-    color: var(--tc-stone);
+    font-weight: 500;
     letter-spacing: 0.06em;
-    line-height: 1.6;
-    margin-top: var(--tc-space-sm);
-    text-align: center;
+    text-transform: uppercase;
+    color: var(--tc-ink);
   }
+  .field input[type="text"],
+  .field input[type="file"],
+  .field select,
+  .field textarea {
+    font-family: var(--tc-font-body);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--tc-ink);
+    background: var(--tc-white);
+    border: 0.5px solid var(--tc-border-strong);
+    border-radius: 0;
+    padding: 10px 12px;
+  }
+  .field textarea { min-height: 88px; resize: vertical; }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+    outline: 2px solid var(--tc-ink);
+    outline-offset: 1px;
+  }
+  .field-hint { font-size: 11px; font-weight: 300; color: var(--tc-stone); }
+  .field-error { font-size: 11px; font-weight: 400; color: #a3271e; display: none; }
+  .field.has-error .field-error { display: block; }
+  .field.has-error input, .field.has-error select, .field.has-error textarea { border-color: #a3271e; }
+
+  .upload-field { border: 0.5px dashed var(--tc-border-strong); padding: var(--tc-space-md); background: var(--tc-white); }
+
+  .form-error-banner {
+    background: #fbeae8;
+    border: 0.5px solid #a3271e;
+    color: #7a1d15;
+    font-size: 13px;
+    padding: var(--tc-space-md);
+    margin-bottom: var(--tc-space-lg);
+  }
+  .form-error-banner[hidden] { display: none; }
+
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .confirmation-box { text-align: center; padding: var(--tc-space-2xl) 0; }
 
   /* ── TIMELINE ─────────────────────────────────────────────────────────── */
   .section-timeline { padding: var(--tc-space-3xl) 0; background: var(--tc-white); }
@@ -716,52 +759,92 @@
   </div>
 </section>
 
-<!-- ── TWO ROUTES ─────────────────────────────────────────────────────────── -->
+<!-- ── SUBMISSION WIZARD ──────────────────────────────────────────────────── -->
 <section class="section-routes" id="submit">
   <div class="tc-page">
     <div class="routes-header">
       <p class="tc-subhead mb-md">Your Submission Path</p>
-      <h2 class="tc-h2">Two Routes. One Destination.</h2>
+      <h2 class="tc-h2">Start Your Assessment.</h2>
       <p class="tc-body mt-md" style="color:var(--tc-stone); font-size:14px;">
-        Both routes are open. Choose the one that matches your situation. If you hold a valid
-        EcoVadis scorecard issued within the last 12 months, take the first. If you do not, take
-        the second.
+        Answer one question to begin. Every field below accepts the literal text "Not Available" as
+        a complete answer if the information isn't available to you — nothing is saved if you close
+        this tab before submitting.
       </p>
     </div>
 
-    <div class="routes-grid">
-
-      <!-- Route 1 — EcoVadis -->
-      <div class="route-card">
-        <div class="route-card-badge"><span>EcoVadis Scorecard</span></div>
-        <div class="route-card-title">Submit Your Existing Scorecard</div>
-        <div class="route-card-body">
-          Suppliers holding a valid EcoVadis scorecard issued within the last 12 months may submit
-          the scorecard link instead of completing the full questionnaire. Share your scorecard from
-          EcoVadis with The Corporate. Our Procurement team confirms your status once it is received.
-        </div>
-        <a href="https://ecovadis.com" target="_blank" rel="noopener noreferrer" class="tc-btn-primary">
-          Submit EcoVadis Scorecard
-        </a>
-        <p class="route-card-note">Opens ecovadis.com in a new tab.</p>
+    <!-- Screen 1 — Landing question -->
+    <div class="assessment-screen" data-screen="question">
+      <p class="tc-body mb-md" style="font-weight:500;">
+        Do you hold a valid, current EcoVadis Scorecard for your organisation?
+      </p>
+      <div class="tree-buttons">
+        <button type="button" class="tc-btn-primary tree-btn-yes" data-answer="yes">Yes, I Have a Scorecard</button>
+        <button type="button" class="tc-btn-secondary tree-btn-no" data-answer="no">No, I Don't</button>
       </div>
+    </div>
 
-      <!-- Route 2 — Full Questionnaire -->
-      <div class="route-card">
-        <div class="route-card-badge"><span>Full Questionnaire</span></div>
-        <div class="route-card-title">Download and Complete the Assessment</div>
-        <div class="route-card-body">
-          Suppliers without a current EcoVadis scorecard complete The Corporate Supplier Questionnaire
-          2026. It covers seven sections mapped to ESRS: general information, climate (E1), pollution
-          and PFAS (E2), water (E3), circular economy and waste (E5), biodiversity (E4), and social,
-          labour and governance (S2, G1). Complete it offline and return it to our EHS team by email.
+    <!-- Screen 2 — EcoVadis Submission Form -->
+    <div class="assessment-screen" data-screen="ecovadis-form" hidden>
+      <button type="button" class="assessment-back" data-back="question">&larr; Back</button>
+      <h3 class="section-block-title">EcoVadis Scorecard Submission</h3>
+      <form id="form-ecovadis" novalidate>
+        <div class="form-error-banner" hidden></div>
+        <div class="field-grid" data-identity-fields></div>
+        <div class="field field-full upload-field mt-lg">
+          <label for="ecovadis_scorecard_file">EcoVadis scorecard (PDF, max 10MB)</label>
+          <input type="file" id="ecovadis_scorecard_file" name="ecovadis_scorecard_file" accept=".pdf,application/pdf">
+          <span class="field-error"></span>
         </div>
-        <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary">
-          Download Assessment
-        </a>
-        <p class="route-card-note">Return the completed file to sustainability@thecorporate.com</p>
-      </div>
+        <button type="submit" class="tc-btn-primary btn-submit mt-lg" style="width:auto; padding:16px 40px;">Submit Scorecard</button>
+      </form>
+    </div>
 
+    <!-- Screen 3 — No-EcoVadis Choice Screen -->
+    <div class="assessment-screen" data-screen="choice" hidden>
+      <button type="button" class="assessment-back" data-back="question">&larr; Back</button>
+      <h3 class="section-block-title">How would you like to complete the questionnaire?</h3>
+      <div class="choice-buttons">
+        <button type="button" class="tc-btn-primary tree-btn-yes" data-choice="excel-reupload">Download Questionnaire (Excel)</button>
+        <button type="button" class="tc-btn-secondary tree-btn-no" data-choice="online-questionnaire">Fill Online</button>
+      </div>
+    </div>
+
+    <!-- Screen 4 — Excel Re-upload Path -->
+    <div class="assessment-screen" data-screen="excel-reupload" hidden>
+      <button type="button" class="assessment-back" data-back="choice">&larr; Back</button>
+      <h3 class="section-block-title">Excel Questionnaire — Download &amp; Return</h3>
+      <a href="assets/The_Corporate_Supplier_Questionnaire_2026.xlsx" download class="tc-btn-secondary" style="display:inline-block; width:auto; padding:12px 24px;">
+        Download Questionnaire
+      </a>
+      <p class="field-hint mt-md mb-lg">Complete it offline, then come back here to identify yourself and upload the completed file.</p>
+      <form id="form-excel" novalidate>
+        <div class="form-error-banner" hidden></div>
+        <div class="field-grid" data-identity-fields></div>
+        <div class="field field-full upload-field mt-lg">
+          <label for="reuploaded_excel_file">Completed questionnaire (.xlsx, max 10MB)</label>
+          <input type="file" id="reuploaded_excel_file" name="reuploaded_excel_file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          <span class="field-error"></span>
+        </div>
+        <button type="submit" class="tc-btn-primary btn-submit mt-lg" style="width:auto; padding:16px 40px;">Submit Completed Questionnaire</button>
+      </form>
+    </div>
+
+    <!-- Screen 5 — Online Questionnaire -->
+    <div class="assessment-screen" data-screen="online-questionnaire" hidden>
+      <button type="button" class="assessment-back" data-back="choice">&larr; Back</button>
+      <h3 class="section-block-title">Online Sustainability Questionnaire</h3>
+      <form id="form-online" novalidate>
+        <div class="form-error-banner" hidden></div>
+        <div class="field-grid" data-identity-fields></div>
+        <div data-online-sections></div>
+        <button type="submit" class="tc-btn-primary btn-submit mt-lg" style="width:auto; padding:16px 40px;">Submit Questionnaire</button>
+      </form>
+    </div>
+
+    <!-- Screen 6 — Confirmation -->
+    <div class="assessment-screen confirmation-box" data-screen="confirmation" hidden>
+      <h3 class="tc-h2" style="margin-bottom:var(--tc-space-md);">Thank you.</h3>
+      <p class="tc-body" data-confirmation-message style="color:var(--tc-stone); max-width:520px; margin:0 auto;"></p>
     </div>
   </div>
 </section>
@@ -887,5 +970,363 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  'use strict';
+
+  var IDENTITY_FIELDS = [
+    { name: 'legal_name', label: 'Legal company name', type: 'text' },
+    { name: 'registered_country', label: 'Registered country', type: 'text' },
+    { name: 'contact_name', label: 'Primary contact name', type: 'text' },
+    { name: 'contact_title', label: 'Primary contact title', type: 'text' },
+    { name: 'contact_email', label: 'Primary contact email', type: 'text' }
+  ];
+
+  var ONLINE_SECTIONS = [
+    {
+      title: 'S2 — Climate & Decarbonisation (E1)',
+      fields: [
+        { name: 'scope1_emissions_tco2e', label: 'Scope 1 emissions', type: 'text', hint: 'tCO2e' },
+        { name: 'scope2_emissions_tco2e_market_based', label: 'Scope 2 emissions (market-based)', type: 'text', hint: 'tCO2e' },
+        { name: 'scope2_verification_method', label: 'Scope 2 verification method', type: 'select', options: ['Verified by Third Party', 'Internally Calculated', 'Estimated', 'Not Tracked'] },
+        { name: 'scope3_emissions_tco2e', label: 'Scope 3 emissions', type: 'text', hint: 'tCO2e' },
+        { name: 'scope3_categories_included', label: 'Scope 3 categories included', type: 'text' },
+        { name: 'sbti_target', label: 'Has an SBTi-validated target', type: 'select', options: ['Yes', 'No'] },
+        { name: 'decarbonisation_projects', label: 'Top 3 decarbonisation projects, next 24 months', type: 'textarea' },
+        { name: 'reduction_barriers', label: 'Barriers to a 50% reduction by 2030', type: 'textarea' }
+      ]
+    },
+    {
+      title: 'S3 — Pollution & PFAS (E2)',
+      fields: [
+        { name: 'substances_of_concern_kg', label: 'REACH/SVHC substances of concern', type: 'text', hint: 'kg' },
+        { name: 'pfas_present', label: 'Products/processes contain PFAS', type: 'select', options: ['Yes', 'No'] },
+        { name: 'pfas_substitution_roadmap', label: 'PFAS substitution roadmap', type: 'textarea', conditional: { field: 'pfas_present', equals: 'Yes' } },
+        { name: 'wastewater_treatment', label: 'Wastewater treatment process', type: 'textarea' }
+      ]
+    },
+    {
+      title: 'S4 — Water (E3)',
+      fields: [
+        { name: 'water_withdrawal_m3', label: 'Water withdrawal', type: 'text', hint: 'm³' },
+        { name: 'water_source', label: 'Water source', type: 'text', hint: 'Municipal / groundwater / surface' },
+        { name: 'high_water_stress_region', label: 'Primary facility in a high-water-stress region', type: 'select', options: ['Yes', 'No'] },
+        { name: 'water_saving_projects', label: 'Water-saving / recycling initiatives', type: 'textarea' },
+        { name: 'drought_contingency_plan', label: 'Drought contingency plan', type: 'textarea', conditional: { field: 'high_water_stress_region', equals: 'Yes' } }
+      ]
+    },
+    {
+      title: 'S5 — Circular Economy & Waste (E5)',
+      fields: [
+        { name: 'waste_generated_tonnes', label: 'Waste generated', type: 'text', hint: 'Tonnes' },
+        { name: 'waste_breakdown', label: 'Waste breakdown', type: 'text', hint: 'Landfill / recycled / energy recovery / hazardous' },
+        { name: 'pcr_content_percent', label: 'Post-consumer recycled content', type: 'text', hint: '%' },
+        { name: 'circularity_in_components', label: 'Circularity approach for components supplied', type: 'textarea' },
+        { name: 'zero_waste_strategy', label: 'Zero Waste to Landfill strategy', type: 'textarea' }
+      ]
+    },
+    {
+      title: 'S6 — Biodiversity (E4)',
+      fields: [
+        { name: 'protected_area_proximity', label: 'Site within/adjacent to a protected area', type: 'select', options: ['Yes', 'No'] },
+        { name: 'biodiversity_initiatives', label: 'Biodiversity initiatives taken', type: 'textarea' },
+        { name: 'biodiversity_impact_assessment', label: 'TNFD or equivalent assessment status', type: 'textarea' }
+      ]
+    },
+    {
+      title: 'S7 — Social, Labour & Governance (S2, G1)',
+      fields: [
+        { name: 'human_rights_policy', label: 'Formal Human Rights Policy exists', type: 'select', options: ['Yes', 'No'] },
+        { name: 'human_rights_due_diligence', label: 'Due diligence conducted in last 24 months', type: 'select', options: ['Yes', 'No'] },
+        { name: 'grievance_mechanism', label: 'Grievance mechanism — description and numbers filed/resolved', type: 'textarea' },
+        { name: 'conflict_minerals_policy', label: 'Verified 3TG conflict minerals policy in place', type: 'select', options: ['Yes', 'No'] },
+        { name: 'code_of_conduct_monitoring', label: 'How compliance is monitored, including audits', type: 'textarea' }
+      ]
+    }
+  ];
+
+  var MAX_FILE_BYTES = 10 * 1024 * 1024;
+
+  var CONFIRMATION_MESSAGES = {
+    ecovadis: 'Your EcoVadis scorecard has been received. Our Procurement/EHS team will be in touch if anything further is needed.',
+    excel_reupload: 'Your completed questionnaire has been received. Thank you for your time.',
+    online: 'Your sustainability questionnaire has been received. Thank you for your time.'
+  };
+
+  function el(tag, attrs) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (key) {
+      var value = attrs[key];
+      if (value === undefined || value === null) return;
+      if (key === 'class') node.className = value;
+      else if (key === 'text') node.textContent = value;
+      else node.setAttribute(key, value);
+    });
+    return node;
+  }
+
+  function buildField(f) {
+    var wrap = el('div', { class: 'field' + (f.type === 'textarea' ? ' field-full' : '') });
+    if (f.conditional) {
+      wrap.dataset.conditionalField = f.conditional.field;
+      wrap.dataset.conditionalEquals = f.conditional.equals;
+      wrap.hidden = true;
+    }
+    wrap.appendChild(el('label', { for: f.name, text: f.label }));
+
+    var control;
+    if (f.type === 'select') {
+      control = el('select', { id: f.name, name: f.name, required: f.conditional ? undefined : 'required' });
+      control.appendChild(el('option', { value: '', text: 'Select…', disabled: 'disabled', selected: 'selected' }));
+      f.options.concat(['Not Available']).forEach(function (opt) {
+        control.appendChild(el('option', { value: opt, text: opt }));
+      });
+    } else if (f.type === 'textarea') {
+      control = el('textarea', { id: f.name, name: f.name, rows: '3', required: f.conditional ? undefined : 'required' });
+    } else {
+      control = el('input', { type: 'text', id: f.name, name: f.name, required: f.conditional ? undefined : 'required' });
+    }
+    wrap.appendChild(control);
+    if (f.hint) wrap.appendChild(el('p', { class: 'field-hint', text: f.hint }));
+    wrap.appendChild(el('span', { class: 'field-error' }));
+    return wrap;
+  }
+
+  function renderIdentityFields(container) {
+    IDENTITY_FIELDS.forEach(function (f) { container.appendChild(buildField(f)); });
+  }
+
+  function renderOnlineSections(container) {
+    ONLINE_SECTIONS.forEach(function (section) {
+      container.appendChild(el('h4', { class: 'section-block-title', text: section.title }));
+      var grid = el('div', { class: 'field-grid' });
+      section.fields.forEach(function (f) { grid.appendChild(buildField(f)); });
+      container.appendChild(grid);
+    });
+
+    container.querySelectorAll('[data-conditional-field]').forEach(function (wrap) {
+      var trigger = container.querySelector('[name="' + wrap.dataset.conditionalField + '"]');
+      var control = wrap.querySelector('select, textarea, input');
+      function sync() {
+        var show = trigger.value === wrap.dataset.conditionalEquals;
+        wrap.hidden = !show;
+        if (show) control.setAttribute('required', 'required');
+        else {
+          control.removeAttribute('required');
+          control.value = '';
+          clearFieldError(wrap);
+        }
+      }
+      trigger.addEventListener('change', sync);
+      sync();
+    });
+  }
+
+  function showScreen(name) {
+    document.querySelectorAll('.assessment-screen').forEach(function (s) {
+      s.hidden = s.dataset.screen !== name;
+    });
+    document.getElementById('submit').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function clearFieldError(fieldWrap) {
+    fieldWrap.classList.remove('has-error');
+    var e = fieldWrap.querySelector('.field-error');
+    if (e) e.textContent = '';
+  }
+
+  function showFieldError(fieldWrap, message) {
+    fieldWrap.classList.add('has-error');
+    var e = fieldWrap.querySelector('.field-error');
+    if (e) e.textContent = message;
+  }
+
+  function clearErrors(form) {
+    form.querySelectorAll('.field').forEach(clearFieldError);
+    hideFormError(form);
+  }
+
+  function showFormError(form, message) {
+    var banner = form.querySelector('.form-error-banner');
+    banner.textContent = message;
+    banner.hidden = false;
+  }
+
+  function hideFormError(form) {
+    var banner = form.querySelector('.form-error-banner');
+    banner.hidden = true;
+    banner.textContent = '';
+  }
+
+  function validateRequiredFields(form) {
+    var valid = true;
+    form.querySelectorAll('.field').forEach(function (fieldWrap) {
+      if (fieldWrap.hidden) return;
+      var control = fieldWrap.querySelector('input[type="text"], select, textarea');
+      if (!control || !control.hasAttribute('required')) return;
+      if (!control.value || !control.value.trim()) {
+        valid = false;
+        showFieldError(fieldWrap, 'This field is required.');
+      }
+    });
+    return valid;
+  }
+
+  function validateFile(fieldWrap, file, kind) {
+    if (!file) {
+      showFieldError(fieldWrap, 'Please choose a file.');
+      return false;
+    }
+    if (file.size > MAX_FILE_BYTES) {
+      showFieldError(fieldWrap, 'File must be 10MB or smaller.');
+      return false;
+    }
+    if (kind === 'pdf') {
+      if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) {
+        showFieldError(fieldWrap, 'File must be a PDF.');
+        return false;
+      }
+    } else if (kind === 'xlsx') {
+      if (file.type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && !/\.xlsx$/i.test(file.name)) {
+        showFieldError(fieldWrap, 'File must be an .xlsx file.');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function readFileAsBase64(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result).split(',')[1]); };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function collectIdentity(form) {
+    var identity = {};
+    IDENTITY_FIELDS.forEach(function (f) {
+      identity[f.name] = form.querySelector('[name="' + f.name + '"]').value.trim();
+    });
+    return identity;
+  }
+
+  function collectOnlineAnswers(form) {
+    var answers = {};
+    ONLINE_SECTIONS.forEach(function (section) {
+      section.fields.forEach(function (f) {
+        var control = form.querySelector('[name="' + f.name + '"]');
+        var wrap = control.closest('.field');
+        if (wrap.hidden) return;
+        answers[f.name] = control.value.trim();
+      });
+    });
+    return answers;
+  }
+
+  function showConfirmation(path) {
+    document.querySelector('[data-confirmation-message]').textContent =
+      CONFIRMATION_MESSAGES[path] || 'Your submission has been received.';
+    showScreen('confirmation');
+  }
+
+  function submitForm(form, data) {
+    var submitBtn = form.querySelector('.btn-submit');
+    var originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    return fetch('/.netlify/functions/notify-submission', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (json) {
+          if (!res.ok || !json.ok) throw new Error(json.error || 'The notification email could not be sent.');
+          showConfirmation(data.path);
+        });
+      })
+      .catch(function (err) {
+        showFormError(form, "We couldn't send your submission — " + (err.message || 'please try again') + ', or contact sustainability@thecorporate.com directly.');
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      });
+  }
+
+  function handleEcoVadisSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    clearErrors(form);
+    var valid = validateRequiredFields(form);
+    var fileInput = form.querySelector('#ecovadis_scorecard_file');
+    var file = fileInput.files[0];
+    if (!validateFile(fileInput.closest('.field'), file, 'pdf')) valid = false;
+    if (!valid) return;
+
+    readFileAsBase64(file).then(function (base64) {
+      submitForm(form, {
+        path: 'ecovadis',
+        identity: collectIdentity(form),
+        file: { name: file.name, type: file.type, base64: base64 }
+      });
+    });
+  }
+
+  function handleExcelSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    clearErrors(form);
+    var valid = validateRequiredFields(form);
+    var fileInput = form.querySelector('#reuploaded_excel_file');
+    var file = fileInput.files[0];
+    if (!validateFile(fileInput.closest('.field'), file, 'xlsx')) valid = false;
+    if (!valid) return;
+
+    readFileAsBase64(file).then(function (base64) {
+      submitForm(form, {
+        path: 'excel_reupload',
+        identity: collectIdentity(form),
+        file: { name: file.name, type: file.type, base64: base64 }
+      });
+    });
+  }
+
+  function handleOnlineSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    clearErrors(form);
+    if (!validateRequiredFields(form)) return;
+
+    submitForm(form, {
+      path: 'online',
+      identity: collectIdentity(form),
+      answers: collectOnlineAnswers(form)
+    });
+  }
+
+  document.querySelectorAll('[data-identity-fields]').forEach(renderIdentityFields);
+  renderOnlineSections(document.querySelector('[data-online-sections]'));
+
+  document.querySelectorAll('[data-answer]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      showScreen(btn.dataset.answer === 'yes' ? 'ecovadis-form' : 'choice');
+    });
+  });
+  document.querySelectorAll('[data-choice]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showScreen(btn.dataset.choice); });
+  });
+  document.querySelectorAll('[data-back]').forEach(function (btn) {
+    btn.addEventListener('click', function () { showScreen(btn.dataset.back); });
+  });
+
+  document.getElementById('form-ecovadis').addEventListener('submit', handleEcoVadisSubmit);
+  document.getElementById('form-excel').addEventListener('submit', handleExcelSubmit);
+  document.getElementById('form-online').addEventListener('submit', handleOnlineSubmit);
+})();
+</script>
 </body>
 </html>
