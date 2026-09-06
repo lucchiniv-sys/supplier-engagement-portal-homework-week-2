@@ -4,18 +4,18 @@
 > anything. Update it at every save point. Replace content — do not append.
 > History lives in git.
 
-**Session:** 0 — build not started
-**Last updated:** September 6, 2026 — by Project Governor, pre-build
+**Session:** 1
+**Last updated:** September 6, 2026 — Session 1
 **Live URL:** none yet
 
 ## Current state
-Nothing built. GitHub repo not yet created by the builder — CLAUDE.md, PROGRESS.md, and product-spec.md should be uploaded to its root as soon as it exists, before opening Claude Code.
+First Session Setup complete — docs/ created, product-spec.md moved into it. Build starting now.
 
 ## Last session
-None — the first build session has not happened yet.
+Session 1 (this session): ran First Session Setup, moved product-spec.md to docs/, began the build.
 
 ## Remaining work
-- [ ] First Session Setup: create docs/, move product-spec.md into it, commit (see CLAUDE.md Session Protocol)
+- [x] First Session Setup: create docs/, move product-spec.md into it, commit (see CLAUDE.md Session Protocol)
 - [ ] Builder: create a Resend account and have the API key ready to enter as an environment variable
 - [ ] Build Landing Page — wire the existing Yes/No question to real routing (currently CSS-only)
 - [ ] Build No-EcoVadis Choice Screen — "Download Questionnaire" / "Fill Online" buttons
